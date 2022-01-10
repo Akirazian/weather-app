@@ -1,15 +1,16 @@
-import axios from "axios";
+import getWeatherData from './apiHandler.js';
 
-const API_KEY = "5d80ae1be212d9d25902cab8cee43b63";
+const locationInput = document.getElementById("location-input");
+const getWeather = () => getWeatherData(locationInput.value, "imperial");
 
-async function getData(location) {
-  try { 
-    const respone = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=5d80ae1be212d9d25902cab8cee43b63`);
-    console.log(respone.data);
-  } catch (error) {
-    console.log(error);
+
+
+const searchButton = document.getElementById("search-button");
+searchButton.addEventListener('click', getWeather);
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    getWeather();
   }
-
-}
-
-getData("dallas");
+})
