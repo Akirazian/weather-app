@@ -16,7 +16,7 @@ function transformData(name, data) {
       feels_like: Math.round(data.current.feels_like),
       humidity: data.current.humidity,
       wind_speed: data.current.wind_speed,
-      weather: data.current.weather[0]
+      weather: data.current.weather[0] //contains id, mainType, description, and iconId for url
     }, 
     hourly: data.hourly
   }
