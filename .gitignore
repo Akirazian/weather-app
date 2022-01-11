@@ -3,3 +3,5 @@ node_modules
 .eslintignore
 webpack.config.js
 .vscode
+todo.txt
+main.js.map
