@@ -13,4 +13,4 @@ document.addEventListener('keydown', (event) => {
   }
 })
 
-getWeatherData("New York", "imperial");
+

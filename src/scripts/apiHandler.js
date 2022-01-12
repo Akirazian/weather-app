@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios'
 import transformData from "./dataTransformer";
 
 // Sharing this key publicly for project demo purposes. 
@@ -20,7 +20,7 @@ async function getWeatherData(location, unit) {
   try { 
     const locationData = await getCoord(location);
     const response = await axios(`https://api.openweathermap.org/data/2.5/onecall?lat=${locationData.coordinates.lat}&lon=${locationData.coordinates.lon}&exclude=minutely&appid=${API_KEY}&units=${unit}`)
-    transformData(locationData.name, response.data);
+    return transformData(locationData.name, response.data); 
   } catch (error) {
     console.log("getWeatherData error" + error);
   }
