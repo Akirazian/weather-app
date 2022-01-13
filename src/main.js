@@ -1,10 +1,9 @@
 import { createApp } from 'vue'
 import WeatherApp from './WeatherApp.vue'
-import getWeatherData from './scripts/apiHandler'
 
-(async () => {
-   console.log( await getWeatherData("new york", "imperial"));
-})();
+// (async () => {
+//    console.log( await getWeatherData("new york", "imperial"));
+// })();
 
 createApp(WeatherApp).mount('#app')
 

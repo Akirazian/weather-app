@@ -3,8 +3,9 @@
     <h2>{{current.name}}</h2>
     <p>{{current.date}}</p>
     <p>{{current.time}}</p>
-    <h3>{{current.weather.main}}</h3>
+    <h3>{{current.weather.description}}</h3>
     <h1>{{current.temp}}° F</h1>
+    <p>Feels like: {{current.feels_like}}°</p>
   </div>
 </template>
 

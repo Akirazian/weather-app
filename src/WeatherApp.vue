@@ -30,6 +30,7 @@ export default {
   methods: {
     async getWeather(city) {
       const data = await getWeatherData(city, "imperial");
+      console.log(data);
       this.currentWeather = data.current;
     },
   },

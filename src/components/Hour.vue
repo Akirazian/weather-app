@@ -2,6 +2,7 @@
   <div class="hour-forecast">
      <p>{{hour.time}}</p>
      <h3>{{hour.temp}}°</h3>
+     <p>{{hour.weather}}</p>
   </div>
 </template>
 

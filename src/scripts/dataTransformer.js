@@ -1,17 +1,17 @@
 import fromUnixTime from 'date-fns/fromUnixTime'
-import format from 'date-fns/format';
+import formatInTimeZone from 'date-fns-tz/formatInTimeZone';
 
 const transformDate = (() => {
 
-  const currentDate = (unixDate) => {
+  const currentDate = (unixDate, timezone) => {
     const date = fromUnixTime(unixDate);
-    const transformedDate = format(date, "EEEE',' MMM do yyyy")
+    const transformedDate = formatInTimeZone(date, timezone, "EEEE',' MMM do yyyy")
     return transformedDate;
   }
   
-  const currentTime = (unixDate) => {
+  const currentTime = (unixDate, timezone) => {
     const time = fromUnixTime(unixDate);
-    const transformedTime = format(time, "p")
+    const transformedTime = formatInTimeZone(time, timezone, "p")
     return transformedTime
   }
 
@@ -25,8 +25,8 @@ function transformData(name, data) {
    const cleanData = {
     current: {
       name: name,
-      date: transformDate.currentDate(data.current.dt),
-      time: transformDate.currentTime(data.current.dt),
+      date: transformDate.currentDate(data.current.dt, data.timezone),
+      time: transformDate.currentTime(data.current.dt, data.timezone),
       temp: Math.round(data.current.temp),
       feels_like: Math.round(data.current.feels_like),
       humidity: data.current.humidity,

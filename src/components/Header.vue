@@ -25,7 +25,6 @@ export default {
       }
     
     const city = this.searchValue;
-
     this.$emit('search', city);
 
     this.searchValue = '';
