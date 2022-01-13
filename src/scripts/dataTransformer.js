@@ -23,8 +23,8 @@ const transformDate = (() => {
 
 function transformData(name, data) {
    const cleanData = {
-    name: name,
     current: {
+      name: name,
       date: transformDate.currentDate(data.current.dt),
       time: transformDate.currentTime(data.current.dt),
       temp: Math.round(data.current.temp),

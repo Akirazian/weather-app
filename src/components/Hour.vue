@@ -1,8 +1,7 @@
 <template>
   <div class="hour-forecast">
      <p>{{hour.time}}</p>
-     <h3>{{hour.temp}} degrees</h3>
-
+     <h3>{{hour.temp}}°</h3>
   </div>
 </template>
 
@@ -20,7 +19,8 @@
     display: flex;
     flex-direction: column;
     background: rgb(218, 217, 217);
-    margin: 10px
+    padding: 20px;
+    margin: 10px;
   }
 
   h3 {

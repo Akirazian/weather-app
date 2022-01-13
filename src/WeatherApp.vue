@@ -1,19 +1,25 @@
 <template>
   <div class="container">
-    <Header cityName="New York"/>
-    <Hourly v-bind:hourlyWeather="hourlyWeather"/>
+    <Header @search="getWeather"/>
+    <Current :current="currentWeather" />
+    <div class="hourly-container">
+      <Hourly :hourlyWeather="hourlyWeather"/>
+    </div>
   </div>
 </template>
 
 <script>
 import Header from './components/Header.vue'
+import Current from './components/Current.vue'
 import Hourly from './components/Hourly.vue'
+import getWeatherData from './scripts/apiHandler.js'
 
 export default {
   name: 'WeatherApp',
   components: {
     Header,
     Hourly,
+    Current,
   },
   data() {
     return {
@@ -21,24 +27,15 @@ export default {
       hourlyWeather: []
     }
   },
+  methods: {
+    async getWeather(city) {
+      const data = await getWeatherData(city, "imperial");
+      this.currentWeather = data.current;
+    },
+  },
   created() {
-    this.currentWeather = {
-      name: "New York",
-      current: {
-        date: "Tues Jan 11th 2022",
-        time: "9:45 PM",
-        temp: "56",
-        feels_like: "48",
-        humidity: "20",
-        wind_speed: "5",
-        weather: {
-          id: "300",
-          main: "Cloudy",
-          description: "Cloudy with a chance of meatballs",
-          iconId: "01n"
-        } //contains id, mainType, description, and iconId for url fetch
-      },
-    }
+    this.getWeather("london");
+
     this.hourlyWeather = [
       {
         id: 1,
@@ -73,5 +70,10 @@ export default {
 .container {
   text-align: center;
   flex-direction: column;
+}
+
+.hourly-container {
+  display: flex;
+  flex-direction: row;
 }
 </style>

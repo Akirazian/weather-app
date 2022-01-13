@@ -1,5 +1,5 @@
 <template>
-  <div :key="hour.id" v-for="hour in hourlyWeather">
+  <div class="hourly-forecast" :key="hour.id" v-for="hour in hourlyWeather">
     <Hour :hour="hour" />
   </div>
 </template>

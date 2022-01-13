@@ -1,19 +1,34 @@
 <template>
   <header>
-    <h1>{{ cityName }}</h1>
-    <input type="text">
-    <button @click="onClick()" class="search-btn">Search</button>  </header>
+    <h2>Alec's Weather App</h2>
+    <div class="search-bar">
+      <input type="text" placeholder="Enter a city" @keydown.enter="search()" v-model="searchValue" id="search-input">
+      <button @click="search()" class="search-button">Search</button>
+    </div>
+    <button class="temp-unit-button">C / F</button>
+  </header>
 </template>
 
 <script>
 export default {
   name: "Header",
-  props: {
-    cityName: String,
+  data() {
+    return {
+      searchValue: '',
+    }
   },
   methods: {
-    onClick() {
-      console.log("Clicked!")
+    search() {
+      if(!this.searchValue) { 
+        alert('input a city!');
+        return; 
+      }
+    
+    const city = this.searchValue;
+
+    this.$emit('search', city);
+
+    this.searchValue = '';
     }
   }
 }
@@ -21,16 +36,34 @@ export default {
 
 <style scoped>
   header {
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    background: rgb(73, 73, 73);
+    color: whitesmoke;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .search-bar {
     display: flex;
     justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
+    width: 40%;
+    min-width: 300px;
   }
 
   input {
-    margin-bottom: 15px;
-    min-width: 300px;
+    width: 100%;
+    padding: 5px;
+    font-size: 12pt;
+    color: rgb(107, 107, 107)
+  }
+
+  .temp-unit-button {
+    margin: 15px;
+    font-size: 12pt;
+    padding: 10px 20px
   }
 
 </style>>
