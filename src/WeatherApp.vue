@@ -2,9 +2,13 @@
   <div class="container">
     <Header @search="getWeather"/>
     <Current :current="currentWeather" />
+    <hr>
+    <h3>Hourly Forecast</h3>
     <div class="hourly-container">
-      <Hourly :hourlyWeather="hourlyWeather"/>
+      <Hourly :unit="unit" :hourlyWeather="hourlyWeather"/>
     </div>
+    <hr>
+    
   </div>
 </template>
 
@@ -24,7 +28,8 @@ export default {
   data() {
     return {
       currentWeather: {},
-      hourlyWeather: []
+      hourlyWeather: [],
+      unit: "F"
     }
   },
   methods: {
@@ -32,37 +37,11 @@ export default {
       const data = await getWeatherData(city, "imperial");
       console.log(data);
       this.currentWeather = data.current;
+      this.hourlyWeather = data.hourly;
     },
   },
   created() {
     this.getWeather("london");
-
-    this.hourlyWeather = [
-      {
-        id: 1,
-        time: "11pm",
-        temp: "45",
-        weather: "cloudy"
-      },
-      {
-        id: 2,
-        time: "12am",
-        temp: "40",
-        weather: "cloudy"
-      },
-      {
-        id: 3,
-        time: "1am",
-        temp: "38",
-        weather: "drizzle"
-      },
-      {
-        id: 4,
-        time: "2am",
-        temp: "36",
-        weather: "rain"
-      },
-    ]
   } 
 }
 </script>
@@ -75,6 +54,7 @@ export default {
 
 .hourly-container {
   display: flex;
+  overflow-x: scroll;
   flex-direction: row;
 }
 </style>

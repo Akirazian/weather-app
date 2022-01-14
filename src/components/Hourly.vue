@@ -1,6 +1,6 @@
 <template>
   <div class="hourly-forecast" :key="hour.id" v-for="hour in hourlyWeather">
-    <Hour :hour="hour" />
+    <Hour :hour="hour" :unit="unit" />
   </div>
 </template>
 
@@ -11,6 +11,7 @@
     name: "Hourly",
     props: {
       hourlyWeather: Array,
+      unit: String
     },
     components: {
       Hour,

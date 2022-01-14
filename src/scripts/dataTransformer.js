@@ -1,7 +1,7 @@
 import fromUnixTime from 'date-fns/fromUnixTime'
 import formatInTimeZone from 'date-fns-tz/formatInTimeZone';
 
-const transformDate = (() => {
+const transformDate = (() => { //Module for formating Unix time
 
   const currentDate = (unixDate, timezone) => {
     const date = fromUnixTime(unixDate);
@@ -15,11 +15,31 @@ const transformDate = (() => {
     return transformedTime
   }
 
+  const hourTime = (unixDate, timezone) => {
+    const time = fromUnixTime(unixDate);
+    const transformedTime = formatInTimeZone(time, timezone, "h aaa")
+    return transformedTime
+  }
+
   return {
     currentDate,
-    currentTime
+    currentTime,
+    hourTime
   }
 })();
+
+function transformHourlyData(data, timezone) {
+  const reducedData = data.slice(0, 24); //We only want 24 hours of hourly forecast 
+  reducedData.forEach((hour, index) => {
+    const transformedHour = {
+      time: transformDate.hourTime(hour.dt, timezone),
+      temp: Math.round(hour.temp),
+      weather: hour.weather[0].main
+    }
+    reducedData[index] = transformedHour;
+  });
+  return reducedData
+}
 
 function transformData(name, data) {
    const cleanData = {
@@ -33,7 +53,7 @@ function transformData(name, data) {
       wind_speed: data.current.wind_speed,
       weather: data.current.weather[0] //contains id, mainType, description, and iconId for url fetch
     }, 
-    hourly: data.hourly //(Saving this and weekly once I implement Vue!)
+    hourly: transformHourlyData(data.hourly, data.timezone),
   }
   return cleanData;
 }

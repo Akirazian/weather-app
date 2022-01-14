@@ -1,7 +1,7 @@
 <template>
   <div class="hour-forecast">
      <p>{{hour.time}}</p>
-     <h3>{{hour.temp}}°</h3>
+     <h3>{{hour.temp}}° {{unit}}</h3>
      <p>{{hour.weather}}</p>
   </div>
 </template>
@@ -10,13 +10,15 @@
   export default {
     name: 'Hour',
     props: {
-      hour: Object
+      hour: Object,
+      unit: String
     }
   }
 </script>
 
 <style scoped>
   .hour-forecast {
+    flex: 0 0 50px;
     display: flex;
     flex-direction: column;
     background: rgb(218, 217, 217);
@@ -25,7 +27,7 @@
   }
 
   h3 {
-    font-size: 20pt;
+    font-size: 1.4rem;
     margin-top: 0px;
     font-weight: 500;
   }
