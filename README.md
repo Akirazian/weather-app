@@ -1,6 +1,6 @@
 # weather-app
 
-A simple weather app built with Vue.js that allows users to search for any city, and display current, hourly and weekly forecasts. Pulls data from OpenWeatherApp API
+A simple weather app built with Vue.js that allows users to search for any city, and display current, hourly and 7-day forecasts. Pulls data from OpenWeatherApp API
 
 ## Project setup
 ```

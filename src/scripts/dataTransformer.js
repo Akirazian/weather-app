@@ -21,10 +21,17 @@ const transformDate = (() => { //Module for formating Unix time
     return transformedTime
   }
 
+  const dailyTime = (unixDate, timezone) => {
+    const day = fromUnixTime(unixDate);
+    const transformedDay = formatInTimeZone(day, timezone, "EEEE")
+    return transformedDay;
+  }
+
   return {
     currentDate,
     currentTime,
-    hourTime
+    hourTime,
+    dailyTime
   }
 })();
 
@@ -41,6 +48,21 @@ function transformHourlyData(data, timezone) {
   return reducedData
 }
 
+function transformDailyData(data, timezone) {
+  data.forEach((day, index) => {
+    const transformedDay = {
+      day: transformDate.dailyTime(day.dt, timezone),
+      max: Math.round(day.temp.max),
+      min: Math.round(day.temp.min),
+      rainChance: (day.pop * 100),
+      humidity: day.humidity,
+      weather: day.weather[0]
+    }
+    data[index] = transformedDay;
+  });
+  return data;
+}
+
 function transformData(name, data) {
    const cleanData = {
     current: {
@@ -54,10 +76,9 @@ function transformData(name, data) {
       weather: data.current.weather[0] //contains id, mainType, description, and iconId for url fetch
     }, 
     hourly: transformHourlyData(data.hourly, data.timezone),
+    daily: transformDailyData(data.daily, data.timezone)
   }
   return cleanData;
 }
 
-
- 
 export default transformData;

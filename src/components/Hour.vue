@@ -22,19 +22,20 @@
     display: flex;
     flex-direction: column;
     background: rgb(218, 217, 217);
-    padding: 20px;
-    margin: 10px;
+    padding: 15px;
+    margin: 5px;
+    width: 45px;
   }
 
   h3 {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     margin-top: 0px;
     font-weight: 500;
   }
 
   p {
-    margin-bottom: 5px;
-    font-size: 17px;
+    margin-bottom: 7px;
+    width: auto;
   }
 
 </style>

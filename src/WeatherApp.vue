@@ -5,30 +5,39 @@
     <hr>
     <h3>Hourly Forecast</h3>
     <div class="hourly-container">
-      <Hourly :unit="unit" :hourlyWeather="hourlyWeather"/>
+      <div class="hourly-forecast" :key="hour.id" v-for="hour in hourlyWeather">
+        <Hour :hour="hour" :unit="unit" />
+      </div>
     </div>
     <hr>
-    
+    <div class="daily-container">
+      <div class="daily-forecast" :key="day.id" v-for="day in dailyWeather">
+        <Day :day="day" :unit="unit" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import Header from './components/Header.vue'
 import Current from './components/Current.vue'
-import Hourly from './components/Hourly.vue'
+import Hour from './components/Hour.vue'
+import Day from './components/Day.vue'
 import getWeatherData from './scripts/apiHandler.js'
 
 export default {
   name: 'WeatherApp',
   components: {
     Header,
-    Hourly,
+    Hour,
     Current,
+    Day
   },
   data() {
     return {
       currentWeather: {},
       hourlyWeather: [],
+      dailyWeather: [],
       unit: "F"
     }
   },
@@ -38,10 +47,11 @@ export default {
       console.log(data);
       this.currentWeather = data.current;
       this.hourlyWeather = data.hourly;
+      this.dailyWeather = data.daily
     },
   },
   created() {
-    this.getWeather("london");
+    this.getWeather("New York");
   } 
 }
 </script>
@@ -56,5 +66,11 @@ export default {
   display: flex;
   overflow-x: scroll;
   flex-direction: row;
+}
+
+.daily-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 80px;
 }
 </style>
