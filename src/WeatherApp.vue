@@ -43,20 +43,26 @@ export default {
     }
   },
   methods: {
-    async getWeather(city) {
+    async getWeather(city) { //Trigged by search bar, pulls and updates weather data for searched city with currently selected unit.
       this.currentCity = city;
       let fetchUnit;
       this.unit === "F" ? fetchUnit = "imperial" : fetchUnit = "metric";
-      const data = await getWeatherData(city, fetchUnit);
+      this.fetchData(city, fetchUnit);
+    },
+
+    async fetchData(city, unit) { //Pulls and updates data
+      const data = await getWeatherData(city, unit);
       console.log(data);
       this.currentWeather = data.current;
       this.hourlyWeather = data.hourly;
       this.dailyWeather = data.daily
     },
 
-    toggleUnit() {
+    async toggleUnit() { //Toggles F/C unit by first pulling data of the current city with opposite unit and then updating the unit value
+      let fetchUnit;
+      this.unit === "F" ? fetchUnit = "metric" : fetchUnit = "imperial"; //tells fetchData to pull the opposite of the current unit
+      await this.fetchData(this.currentCity, fetchUnit) //this fetch must occur first to prevent delay with DOM update (unit display would update first before the data values!)
       this.unit === "F" ? this.unit = "C" : this.unit = "F";
-      this.getWeather(this.currentCity);
     }
 
   },
