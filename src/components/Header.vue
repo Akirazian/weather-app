@@ -5,7 +5,7 @@
       <input type="text" placeholder="Enter a city" @keydown.enter="search()" v-model="searchValue" id="search-input">
       <button @click="search()" class="search-button">Search</button>
     </div>
-    <button class="temp-unit-button">C / F</button>
+    <button @click="this.$emit('toggleUnit')" class="temp-unit-button">C / F</button>
   </header>
 </template>
 

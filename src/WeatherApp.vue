@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <Header @search="getWeather"/>
-    <Current :current="currentWeather" />
+    <Header @search="getWeather" @toggleUnit="toggleUnit"/>
+    <Current :current="currentWeather" :unit="unit" />
     <hr>
     <h3>Hourly Forecast</h3>
     <div class="hourly-container">
@@ -38,17 +38,27 @@ export default {
       currentWeather: {},
       hourlyWeather: [],
       dailyWeather: [],
-      unit: "F"
+      unit: "F",
+      currentCity: ""
     }
   },
   methods: {
     async getWeather(city) {
-      const data = await getWeatherData(city, "imperial");
+      this.currentCity = city;
+      let fetchUnit;
+      this.unit === "F" ? fetchUnit = "imperial" : fetchUnit = "metric";
+      const data = await getWeatherData(city, fetchUnit);
       console.log(data);
       this.currentWeather = data.current;
       this.hourlyWeather = data.hourly;
       this.dailyWeather = data.daily
     },
+
+    toggleUnit() {
+      this.unit === "F" ? this.unit = "C" : this.unit = "F";
+      this.getWeather(this.currentCity);
+    }
+
   },
   created() {
     this.getWeather("New York");

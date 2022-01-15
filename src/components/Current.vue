@@ -4,7 +4,7 @@
     <p>{{current.date}}</p>
     <p>{{current.time}}</p>
     <h3>{{current.weather.description}}</h3>
-    <h1>{{current.temp}}° F</h1>
+    <h1>{{current.temp}}° {{unit}}</h1>
     <p>Feels like: {{current.feels_like}}°</p>
   </div>
 </template>
@@ -14,6 +14,7 @@ export default {
   name: "Current",
   props: {
     current: Object,
+    unit: String
   },
 }
 </script>
