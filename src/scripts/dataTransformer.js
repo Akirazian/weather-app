@@ -54,7 +54,7 @@ function transformDailyData(data, timezone) {
       day: transformDate.dailyTime(day.dt, timezone),
       max: Math.round(day.temp.max),
       min: Math.round(day.temp.min),
-      rainChance: (day.pop * 100),
+      rainChance: Math.round((day.pop * 100)),
       humidity: day.humidity,
       weather: day.weather[0]
     }

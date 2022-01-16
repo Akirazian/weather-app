@@ -4,7 +4,7 @@
     <p>{{current.date}}</p>
     <p>{{current.time}}</p>
     <h3>{{current.weather.description}}</h3>
-    <h1>{{current.temp}}° {{unit}}</h1>
+    <h1 class="temp">{{current.temp}}° {{unit}}</h1>
     <p>Feels like: {{current.feels_like}}°</p>
   </div>
 </template>
@@ -23,7 +23,11 @@ export default {
   .current-forecast {
     display: flex;
     flex-direction: column;
-    margin: 20px;
+  }
+
+  .temp {
+  white-space: nowrap;
+  overflow: hidden;
   }
 
   h2 {

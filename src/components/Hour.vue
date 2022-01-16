@@ -1,7 +1,7 @@
 <template>
   <div class="hour-forecast">
      <p>{{hour.time}}</p>
-     <h3>{{hour.temp}}° {{unit}}</h3>
+     <h3 class="temp">{{hour.temp}}° {{unit}}</h3>
      <p>{{hour.weather}}</p>
   </div>
 </template>
@@ -24,11 +24,11 @@
     background: rgb(218, 217, 217);
     padding: 15px;
     margin: 5px;
-    width: 45px;
+    width: 50px;
   }
 
   h3 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-top: 0px;
     font-weight: 500;
   }
@@ -36,6 +36,11 @@
   p {
     margin-bottom: 7px;
     width: auto;
+  }
+
+  .temp {
+    white-space: nowrap;
+    overflow: hidden;
   }
 
 </style>
