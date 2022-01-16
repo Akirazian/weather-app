@@ -1,5 +1,6 @@
 import fromUnixTime from 'date-fns/fromUnixTime'
 import formatInTimeZone from 'date-fns-tz/formatInTimeZone';
+import selectIcon from './iconSelector';
 
 const transformDate = (() => { //Module for formating Unix time
 
@@ -41,7 +42,7 @@ function transformHourlyData(data, timezone) {
     const transformedHour = {
       time: transformDate.hourTime(hour.dt, timezone),
       temp: Math.round(hour.temp),
-      weather: hour.weather[0].main
+      weather: selectIcon(hour.weather[0].main)
     }
     reducedData[index] = transformedHour;
   });
@@ -56,7 +57,7 @@ function transformDailyData(data, timezone) {
       min: Math.round(day.temp.min),
       rainChance: Math.round((day.pop * 100)),
       humidity: day.humidity,
-      weather: day.weather[0]
+      weather: selectIcon(day.weather[0].main)
     }
     data[index] = transformedDay;
   });

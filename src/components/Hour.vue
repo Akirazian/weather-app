@@ -2,7 +2,7 @@
   <div class="hour-forecast">
      <p>{{hour.time}}</p>
      <h3 class="temp">{{hour.temp}}° {{unit}}</h3>
-     <p>{{hour.weather}}</p>
+     <img :src="`${publicPath}${hour.weather}`" alt="">
   </div>
 </template>
 
@@ -12,6 +12,11 @@
     props: {
       hour: Object,
       unit: String
+    },
+    data () {
+      return {
+        publicPath: process.env.BASE_URL  //Per Vue 3's Docs, used to link to the public folder for dynamic image path handling
+      }
     }
   }
 </script>

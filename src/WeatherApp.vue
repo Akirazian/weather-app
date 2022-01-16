@@ -15,8 +15,8 @@
       <div class="day-header">
         <div class="day-item">Day</div>
         <div class="day-item">Weather</div>
-        <div class="day-item">Chance of Rain</div>
-        <div class="day-item">Humidity</div>
+        <div class="hide-mobile day-item">Chance of Rain</div>
+        <div class="hide-mobile day-item">Humidity</div>
         <div class="day-item">Temperature</div>
       </div>
       <div class="daily-forecast" :key="day.id" v-for="day in dailyWeather">
@@ -109,6 +109,10 @@
     align-items: center;
     flex-wrap: wrap;
   }
+
+  .hide-mobile {
+    display: none;
+  }
 }
 
 .current-container {
@@ -135,6 +139,10 @@
   align-items: center;
   margin: 10px 0px;
   border-bottom: gray 1px solid;
+}
+
+.day-item {
+  flex: 1 1 0px;
 }
 
 footer {
