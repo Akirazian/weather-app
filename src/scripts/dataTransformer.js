@@ -74,7 +74,8 @@ function transformData(name, data) {
       feels_like: Math.round(data.current.feels_like),
       humidity: data.current.humidity,
       wind_speed: data.current.wind_speed,
-      weather: data.current.weather[0] //contains id, mainType, description, and iconId for url fetch
+      weatherIcon: selectIcon(data.current.weather[0].main),
+      weather_description: data.current.weather[0].description
     }, 
     hourly: transformHourlyData(data.hourly, data.timezone),
     daily: transformDailyData(data.daily, data.timezone)

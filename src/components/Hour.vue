@@ -26,14 +26,15 @@
     flex: 0 0 50px;
     display: flex;
     flex-direction: column;
-    background: rgb(218, 217, 217);
+    background: rgb(240, 240, 240);
     padding: 15px;
     margin: 5px;
-    width: 50px;
+    width: 70px;
+    font-size: 1.3rem;
   }
 
   h3 {
-    font-size: 1.3rem;
+    font-size: 1.7rem;
     margin-top: 0px;
     font-weight: 500;
   }

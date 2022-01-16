@@ -117,7 +117,7 @@
 
 .current-container {
   margin: 40px;
-  width: 700px;
+  width: 1200px;
 }
 
 .hourly-container {
@@ -139,6 +139,7 @@
   align-items: center;
   margin: 10px 0px;
   border-bottom: gray 1px solid;
+  padding-bottom: 10px;
 }
 
 .day-item {

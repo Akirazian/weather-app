@@ -3,7 +3,8 @@
     <h2>{{current.name}}</h2>
     <p>{{current.date}}</p>
     <p>{{current.time}}</p>
-    <h3>{{current.weather.description}}</h3>
+    <img :src="`${publicPath}${current.weatherIcon}`" alt="">
+    <h3>{{current.weather_description}}</h3>
     <h1 class="temp">{{current.temp}}° {{unit}}</h1>
     <p>Feels like: {{current.feels_like}}°</p>
   </div>
@@ -16,6 +17,11 @@ export default {
     current: Object,
     unit: String
   },
+  data () {
+    return {
+      publicPath: process.env.BASE_URL  //Per Vue 3's Docs, used to link to the public folder for dynamic image path handling
+    }
+  }
 }
 </script>
 
@@ -23,6 +29,12 @@ export default {
   .current-forecast {
     display: flex;
     flex-direction: column;
+    align-items: center;
+  }
+
+  img {
+    width: 100px;
+    height: 100px;
   }
 
   .temp {
@@ -42,7 +54,9 @@ export default {
   h3 {
     font-size: 20pt;
     font-weight: 500;
-    margin: 10px
+    margin: 10px;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
   h1 {

@@ -30,7 +30,9 @@ export default {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin: 10px 0px;
+    margin: 15px 0px;
+    /* padding-bottom: 5px;
+    border-bottom: rgba(128, 128, 128, 0.432) 1px solid; */
   }
 
   .day-item {
