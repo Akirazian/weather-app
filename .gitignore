@@ -2,7 +2,6 @@
 node_modules
 todo.txt
 .eslintignore
-dist
 
 # local env files
 .env.local
