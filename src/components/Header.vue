@@ -21,7 +21,6 @@ export default {
   methods: {
     search() {
       if(!this.searchValue) { 
-        alert('input a city!');
         return; 
       }
     
@@ -65,6 +64,7 @@ export default {
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
+    max-width: 200px;
   }
 
   .button-59:focus {
@@ -100,6 +100,29 @@ export default {
     padding: 20px;
   }
 
+  input {
+    min-width: 400px;
+    padding: 5px;
+    font-size: 12pt;
+    color: rgb(107, 107, 107)
+  }
+
+  @media only screen and (max-width: 768px) {
+    header {
+      flex-direction: column;
+    }
+
+    .search-bar {
+      margin-bottom: 8px;
+    }
+  }
+
+  @media only screen and (max-width: 425px) {
+    input {
+      min-width: 100px;
+    }
+  }
+
   h2 {
     font-size: 1.7rem;
   }
@@ -107,22 +130,6 @@ export default {
   .search-bar {
     display: flex;
     justify-content: center;
-    width: 40%;
-    min-width: 300px;
-  }
-
-  .search-button {
-    background-color: #85C7F5;
-    color: rgb(32, 32, 32);
-    font-size: 18px;
-    padding: 7px;
-  }
-
-  input {
-    width: 100%;
-    padding: 5px;
-    font-size: 12pt;
-    color: rgb(107, 107, 107)
   }
 
   .temp-unit-button {
