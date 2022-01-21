@@ -1,4 +1,4 @@
-function selectIcon(weather) {
+function selectIcon(weather, time) {
   let weatherIcon;
 
   switch (weather) {
@@ -23,6 +23,10 @@ function selectIcon(weather) {
       break;
     
     case "Clear":
+      if (time === "night") {
+        weatherIcon = "night.png"
+        break;
+      }
       weatherIcon = "sun.png";
       break;
 

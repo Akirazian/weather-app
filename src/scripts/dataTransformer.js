@@ -39,10 +39,11 @@ const transformDate = (() => { //Module for formating Unix time
 function transformHourlyData(data, timezone) {
   const reducedData = data.slice(0, 24); //We only want 24 hours of hourly forecast 
   reducedData.forEach((hour, index) => {
+    const time = hour.weather[0].icon.slice(-1) === "d" ? "day" : "night";
     const transformedHour = {
       time: transformDate.hourTime(hour.dt, timezone),
       temp: Math.round(hour.temp),
-      weather: selectIcon(hour.weather[0].main)
+      weather: selectIcon(hour.weather[0].main, time)
     }
     reducedData[index] = transformedHour;
   });
@@ -65,7 +66,9 @@ function transformDailyData(data, timezone) {
 }
 
 function transformData(name, data) {
-   const cleanData = {
+  const time = data.current.weather[0].icon.slice(-1) === "d" ? "day" : "night"; 
+
+  const cleanData = {
     current: {
       name: name,
       date: transformDate.currentDate(data.current.dt, data.timezone),
@@ -74,7 +77,7 @@ function transformData(name, data) {
       feels_like: Math.round(data.current.feels_like),
       humidity: data.current.humidity,
       wind_speed: data.current.wind_speed,
-      weatherIcon: selectIcon(data.current.weather[0].main),
+      weatherIcon: selectIcon(data.current.weather[0].main, time),
       weather_description: data.current.weather[0].description
     }, 
     hourly: transformHourlyData(data.hourly, data.timezone),
