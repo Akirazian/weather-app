@@ -4,8 +4,6 @@ A weather app built with Vue.js that allows users to search for any city, and di
 
 My first-ever project in Vue!
 
-[Live Demo](https://akirazian.github.io/weather-app/)
-
 ## Project setup
 ```
 npm install
