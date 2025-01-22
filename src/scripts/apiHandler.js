@@ -1,9 +1,8 @@
 import axios from 'axios'
 import transformData from "./dataTransformer";
 
-// Sharing this key publicly for project demo purposes. 
-// While not ideal, it's okay because OpenWeatherAPI is free and available to anyone! But don't do this for any real production projects.
-const API_KEY = "5d80ae1be212d9d25902cab8cee43b63"; 
+//Enter your OpenWeather API key here
+const API_KEY = "YOUR_KEY";
 
 // First get the coordinates and city name from OpenWeather's 'current weather' API
 async function getCoord(location) { 
